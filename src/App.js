@@ -4,8 +4,7 @@ import Button from './components/Button';
 function App() {
   return (
     <div className='App' id='quote-box'>
-      {/* <Button buttonDisplayName='Next Quote' /> */}
-      <button>{...buttonDisplayName}</button>
+      <Button buttonDisplayName='Next Quote' />
     </div>
   );
 }
