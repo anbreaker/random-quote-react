@@ -1,12 +1,21 @@
-import './App.css';
+import React, {Component} from 'react';
 import Button from './components/Button';
+import './App.css';
 
-function App() {
-  return (
-    <div className='App' id='quote-box'>
-      <Button buttonDisplayName='Next Quote' />
-    </div>
-  );
+class App extends Component {
+  nextQuoteHandler() {
+    console.log('Hola');
+  }
+
+  render() {
+    return (
+      <div className="App" id="quote-box">
+        <Button buttonDisplayName="Next Quote" clickHandler={this.nextQuoteHandler} />
+      </div>
+    );
+  }
 }
+
+//15
 
 export default App;
