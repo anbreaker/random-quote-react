@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Button from './components/Button';
 import {random} from 'lodash';
+import isOdd from 'is-odd';
 import './App.css';
 
 class App extends Component {
@@ -18,7 +19,7 @@ class App extends Component {
     fetch('https://raw.githubusercontent.com/kasappeal/nerdquotes/master/README.md')
       .then((data) => data.text())
       .then((data) => {
-        const quotes = [...data.match(/^[>*]\s?(.+)\*?$/gm)];
+        const quotes = [...data.match(/^[\sd{6-}][>*]\s?(.+)\*?$/gm)];
 
         this.setState({quotes}, this.assignNewQuoteIndex);
       });
@@ -29,16 +30,18 @@ class App extends Component {
       return undefined;
     }
 
-    const phrase = `${this.state.quotes[this.state.selectedQuoteIndex]} - Author ${
-      this.state.quotes[this.state.selectedQuoteIndex + 1]
-    }`;
+    const phrase = `${this.state.quotes[this.state.selectedQuoteIndex]} `;
+    console.log(`${this.state.quotes[this.state.selectedQuoteIndex]} 
+      autor: ${this.state.quotes[this.state.selectedQuoteIndex + 1]} `);
 
     return phrase;
   }
 
   generateNewQuoteIndex() {
     if (!this.state.quotes.length) return undefined;
-    return random(0, this.state.quotes.length - 1);
+    const numRandom = random(0, this.state.quotes.length - 1);
+    if (isOdd(numRandom)) return numRandom + 1;
+    return numRandom;
   }
 
   assignNewQuoteIndex() {
