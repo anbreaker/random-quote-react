@@ -1,31 +1,35 @@
 const fetch = require('node-fetch');
+const {random} = require('lodash');
 const fs = require('fs');
 
-fetch('https://raw.githubusercontent.com/kasappeal/nerdquotes/master/README.md')
+fetch('https://raw.githubusercontent.com/anbreaker/nerdquotes/master/README.md')
   .then((data) => data.text())
   .then((data) => {
+    let jsonFormat = [];
     const regex = /^[\sd{6-}][>*]\s?(.+)\*?$/gm;
 
-    const phrasesKeepcoding = data.split(regex).join('').trim();
-    const phrase = phrasesKeepcoding.split('------');
+    let phrasesKeepcoding = data.split(regex).join('');
+    phrasesKeepcoding = phrasesKeepcoding.split('------');
 
-    let phraseAuthor = phrase[296].split('\n');
-    const author = phraseAuthor[phraseAuthor.length - 3];
+    phrasesKeepcoding.map((item) => {
+      let phrase = item.split('\n');
+      let author = phrase[phrase.length - 2];
 
-    phraseAuthor = phraseAuthor.filter((item) => {
-      if (item !== author) {
-        return item;
-      }
+      phrase = phrase.filter((item) => {
+        if (item !== author) {
+          return item;
+        }
+      });
+
+      jsonFormat.push({
+        phrase: phrase[0],
+        author: phrase[1],
+      });
     });
 
-    const json = {
-      autor: author,
-      frase: phraseAuthor,
-    };
+    console.log(jsonFormat[random(0, jsonFormat.length - 1)]);
 
-    console.log(json);
-
-    fs.writeFile('phrasesKeepcoding.md', phrasesKeepcoding, (error) => {
-      if (error) return console.error(error);
-    });
+    // fs.writeFile('phrasesKeepcoding.json', JSON.stringify(jsonFormat), (error) => {
+    //   if (error) return console.error(error);
+    // });
   });
