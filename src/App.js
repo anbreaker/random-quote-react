@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Button from './components/Button';
+import QuoteKeepcoding from './components/QuoteKeepcoding';
 import {random} from 'lodash';
 import './App.css';
 
@@ -52,9 +53,13 @@ class App extends Component {
       return undefined;
     }
 
-    return `${this.state.quotes[this.state.selectedQuoteIndex].phrase} - Autor: ${
-      this.state.quotes[this.state.selectedQuoteIndex].author
-    }`;
+    // console.log(this.state.quotes[this.state.selectedQuoteIndex].phrase);
+    // console.log(this.state.quotes[this.state.selectedQuoteIndex].author);
+
+    return this.state.quotes[this.state.selectedQuoteIndex];
+    // return `${this.state.quotes[this.state.selectedQuoteIndex].phrase} - Autor: ${
+    //   this.state.quotes[this.state.selectedQuoteIndex].author
+    // }`;
   }
 
   generateNewQuoteIndex() {
@@ -70,13 +75,25 @@ class App extends Component {
   render() {
     return (
       <div className="App" id="quote-box">
-        {this.selectedQuote}
-        <Button buttonDisplayName="Next Quote" clickHandler={this.assignNewQuoteIndex} />
+        <QuoteKeepcoding
+          selectedQuote={this.selectedQuote}
+          assignNewQuoteIndex={this.assignNewQuoteIndex}
+        />
       </div>
     );
   }
 }
 
-//15
-
 export default App;
+
+// Esto si funciona...
+
+// <div className="App" id="quote-box">
+//   {this.selectedQuote
+//     ? `"${this.selectedQuote.phrase}" - Author: ${this.selectedQuote.author}`
+//     : ''}
+//
+//   {/* No entiendo este ternario... */}
+//   {/* {`${this.selectedQuote.phrase} - Author: ${this.selectedQuote.author}`} */}
+//   <Button buttonDisplayName="Next Quote" clickHandler={this.assignNewQuoteIndex} />
+// </div>;
