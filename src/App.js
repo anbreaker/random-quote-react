@@ -18,10 +18,31 @@ class App extends Component {
     fetch('https://raw.githubusercontent.com/anbreaker/nerdquotes/master/README.md')
       .then((data) => data.text())
       .then((data) => {
+        let quotes = [];
         const regex = /^[\sd{6-}][>*]\s?(.+)\*?$/gm;
-        const phrasesKeepcoding = data.split(regex).join('').trim();
-        const quotes = phrasesKeepcoding.split('------');
 
+        let phrasesKeepcoding = data.split(regex).join('');
+        phrasesKeepcoding = phrasesKeepcoding.split('------');
+
+        phrasesKeepcoding.map((item) => {
+          let phrase = item.split('\n');
+          let author = phrase[phrase.length - 2];
+
+          phrase = phrase.filter((item) => {
+            if (item !== author) {
+              return item;
+            }
+            return null;
+          });
+
+          quotes.push({
+            phrase: phrase[0],
+            author: phrase[1],
+          });
+          return quotes;
+        });
+
+        // console.log(quotes[random(0, quotes.length - 1)]);
         this.setState({quotes}, this.assignNewQuoteIndex);
       });
   }
@@ -31,23 +52,9 @@ class App extends Component {
       return undefined;
     }
 
-    let phraseAuthor = this.statequotes[this.state.selectedQuoteIndex].split('\n');
-    const author = phraseAuthor[phraseAuthor.length - 3];
-
-    phraseAuthor = phraseAuthor.filter((item) => {
-      if (item !== author) {
-        return item;
-      }
-    });
-
-    const phraseWeb = {
-      frase: phraseAuthor,
-      autor: author.replace('*', '').replace('*', ''),
-    };
-
-    // const phrase = `${this.state.quotes[this.state.selectedQuoteIndex]}`;
-
-    return phraseWeb;
+    return `${this.state.quotes[this.state.selectedQuoteIndex].phrase} - Autor: ${
+      this.state.quotes[this.state.selectedQuoteIndex].author
+    }`;
   }
 
   generateNewQuoteIndex() {
