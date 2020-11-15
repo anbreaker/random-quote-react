@@ -1,6 +1,9 @@
 {
   "name": "random-quote-react",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "version": "0.1.0",
+  "author": "anbreaker",
+  "keywords": [],
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -37,5 +40,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anbreaker/random-quote-react.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anbreaker/random-quote-react/issues"
   }
 }
