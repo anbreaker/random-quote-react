@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Button from './components/Button';
 import QuoteKeepcoding from './components/QuoteKeepcoding';
 import {random} from 'lodash';
+import 'typeface-roboto';
 import './App.css';
 
 class App extends Component {
@@ -53,13 +53,7 @@ class App extends Component {
       return undefined;
     }
 
-    // console.log(this.state.quotes[this.state.selectedQuoteIndex].phrase);
-    // console.log(this.state.quotes[this.state.selectedQuoteIndex].author);
-
     return this.state.quotes[this.state.selectedQuoteIndex];
-    // return `${this.state.quotes[this.state.selectedQuoteIndex].phrase} - Autor: ${
-    //   this.state.quotes[this.state.selectedQuoteIndex].author
-    // }`;
   }
 
   generateNewQuoteIndex() {
@@ -85,15 +79,3 @@ class App extends Component {
 }
 
 export default App;
-
-// Esto si funciona...
-
-// <div className="App" id="quote-box">
-//   {this.selectedQuote
-//     ? `"${this.selectedQuote.phrase}" - Author: ${this.selectedQuote.author}`
-//     : ''}
-//
-//   {/* No entiendo este ternario... */}
-//   {/* {`${this.selectedQuote.phrase} - Author: ${this.selectedQuote.author}`} */}
-//   <Button buttonDisplayName="Next Quote" clickHandler={this.assignNewQuoteIndex} />
-// </div>;
