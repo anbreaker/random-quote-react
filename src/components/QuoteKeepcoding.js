@@ -5,13 +5,21 @@ import Button from './Button';
 const QuoteKeepcoding = (props) => {
   return (
     <>
-      {props.selectedQuote
-        ? `"${props.selectedQuote.phrase.replace('*', '')}"
-             - Autor: ${props.selectedQuote.author.replace('*', '')}`
-        : ''}
-      <Button buttonDisplayName="Next Quote" clickHandler={props.assignNewQuoteIndex} />
+      <Typography id="text">
+        {props.selectedQuote
+          ? `"${props.selectedQuote.phrase.replace('*', '')}"
+             - ${props.selectedQuote.author.replace('*', '')}`
+          : ''}
+      </Typography>
+      <br />
+      <Typography>
+        <Button buttonDisplayName="Next Quote" clickHandler={props.assignNewQuoteIndex} />
+      </Typography>
     </>
   );
 };
+
+// 9.36
+// https://www.youtube.com/watch?v=zUefD1Ojr88
 
 export default QuoteKeepcoding;
