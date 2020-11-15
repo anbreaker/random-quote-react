@@ -19,7 +19,4 @@ const QuoteKeepcoding = (props) => {
   );
 };
 
-// 9.36
-// https://www.youtube.com/watch?v=zUefD1Ojr88
-
 export default QuoteKeepcoding;
