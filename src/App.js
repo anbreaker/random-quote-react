@@ -83,7 +83,7 @@ class App extends Component {
         id="quote-box"
         justify="center"
         container>
-        <Grid item>
+        <Grid xs={11} lg={6} item>
           <QuoteKeepcoding
             selectedQuote={this.selectedQuote}
             assignNewQuoteIndex={this.assignNewQuoteIndex}
